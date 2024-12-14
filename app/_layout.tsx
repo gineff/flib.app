@@ -12,6 +12,8 @@ import Drawer from 'expo-router/drawer'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
+import { DrawerContent } from '@/components/drawerContent/DrawerContent'
+import { DrawScreens } from '@/constants/DrawScreens'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -35,9 +37,10 @@ export default function DrawerLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer screenOptions={{ headerShown: false }}>
-          <Drawer.Screen name="(home)" />
-        </Drawer>
+        <Drawer
+          drawerContent={DrawerContent}
+          screenOptions={{ headerShown: false }}
+        />
       </GestureHandlerRootView>
       <StatusBar style="auto" />
     </ThemeProvider>

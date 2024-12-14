@@ -1,44 +1,30 @@
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer'
-import Drawer from 'expo-router/drawer'
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
+import { useRouter } from 'expo-router'
 
 export const DrawerContent = (props: any) => {
+  const router = useRouter()
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props}>
-        <Drawer.Screen
-          name="/(home)/newBooks"
-          options={{
-            drawerLabel: 'Новые книги',
-          }}
-        />
-        <Drawer.Screen
-          name="/(home)/popularDay"
-          options={{
-            drawerLabel: 'Популярные за день',
-          }}
-        />
-        <Drawer.Screen
-          name="/(home)/popularWeek"
-          options={{
-            drawerLabel: 'Популярные за неделю',
-          }}
-        />
-        <Drawer.Screen
-          name="/(home)/search"
-          options={{
-            drawerLabel: 'Поиск книг',
-          }}
-        />
-        <Drawer.Screen
-          name="/(home)/settings"
-          options={{
-            drawerLabel: 'Настройки',
-          }}
-        />
-      </DrawerItemList>
+      <DrawerItem
+        label="Новые книги"
+        onPress={() => router.navigate('/(home)/list/newBooks')}
+      />
+      <DrawerItem
+        label="Популярные за день"
+        onPress={() => router.navigate('/(home)/list/popularDay')}
+      />
+      <DrawerItem
+        label="Популярные за неделю"
+        onPress={() => router.navigate('/(home)/list/popularWeek')}
+      />
+      <DrawerItem
+        label="Поиск книги"
+        onPress={() => router.navigate('/(home)/search')}
+      />
+      <DrawerItem
+        label="Настройки"
+        onPress={() => router.navigate('/(home)/settings')}
+      />
     </DrawerContentScrollView>
   )
 }

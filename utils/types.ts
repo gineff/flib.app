@@ -1,4 +1,4 @@
-export type Chunk = {
-  data: unknown
-  next: string
+export type PageData<T> = {
+  data: T[]
+  next?: string
 }

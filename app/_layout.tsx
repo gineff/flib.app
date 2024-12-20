@@ -13,7 +13,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { DrawerContent } from '@/components/drawerContent/DrawerContent'
-import { DrawScreens } from '@/constants/DrawScreens'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()

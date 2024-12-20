@@ -1,19 +1,18 @@
-import { getList } from '@/utils/getList'
 import { makeAutoObservable } from 'mobx'
+import { ListBookCores } from './listBookCores'
+import { listsDetails } from './constants'
 
-export class ListStore {
-  list = []
+class ListsStore {
+  lists: Record<string, InstanceType<typeof ListBookCores>> = {}
   constructor() {
-    this.list = []
     makeAutoObservable(this)
   }
-  load(count: number) {
-    const items = []
-    let isListFinished = false
-    while (items.length < count || isListFinished) {
-      this.list = getList('/popular')
+  getList = (name: string) => {
+    if (!this.lists[name]) {
+      this.lists[name] = new ListBookCores(name as keyof typeof listsDetails)
     }
+    return this.lists[name]
   }
 }
 
-export const listStore = new ListStore()
+export const listsStore = new ListsStore()

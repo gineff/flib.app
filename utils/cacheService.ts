@@ -18,16 +18,13 @@ export class CacheService {
     return hashed
   }
 
-  async fetchWithCache<T>(
-    url: string,
-    fetcher: () => Promise<T[]>
-  ): Promise<T[]> {
+  async fetchWithCache<T>(url: string, fetcher: () => Promise<T>): Promise<T> {
     const urlHash = await this.hashUrl(url)
 
     const cachedData = await storage.getItem(urlHash)
     if (cachedData) {
       console.log(`Fetching data from cache for URL: ${url}`)
-      return JSON.parse(cachedData) as T[]
+      return JSON.parse(cachedData) as T
     }
 
     const data = await fetcher()
@@ -37,3 +34,5 @@ export class CacheService {
     return data
   }
 }
+
+export const cacheService = new CacheService()
